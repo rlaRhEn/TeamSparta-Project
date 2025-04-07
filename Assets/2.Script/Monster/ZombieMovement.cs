@@ -29,8 +29,8 @@ public class ZombieMovement : MonoBehaviour
     }
     private void Start()
     {
-        raycastDistance = 0.2f;
-        jumpPower = 4f;
+        raycastDistance = 0.3f;
+        jumpPower = 5f;
         jumpCooldown = 1f;
     }
     private void Update()
@@ -39,7 +39,7 @@ public class ZombieMovement : MonoBehaviour
     }
     void CheckFrontZombie()
     {
-        Vector3 rayOrigin = new Vector3(transform.position.x - 0.3f, transform.position.y + 0.1f, transform.position.z);
+        Vector2 rayOrigin = new Vector2(transform.position.x - 0.3f, transform.position.y + 0.2f);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.left, raycastDistance);
         Debug.DrawRay(rayOrigin, Vector2.left * raycastDistance, Color.red);
 
@@ -65,9 +65,8 @@ public class ZombieMovement : MonoBehaviour
     {
         int myIndex = GameManager.Instance.zombieManager.zombieList.IndexOf(gameObject); 
         int frontIndex = GameManager.Instance.zombieManager.zombieList.IndexOf(frontZombie.gameObject);
-        bool sameLane = (this.gameObject.layer == frontZombie.gameObject.layer);
-   
-        if(myIndex > frontIndex && sameLane)
+        
+        if(myIndex >= frontIndex)
         {
             zombie.ChangeState(BaseState.state.jump);
         }

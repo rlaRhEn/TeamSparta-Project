@@ -16,10 +16,17 @@ public class HeroController : MonoBehaviour
     public Hero hero;
 
     private Transform target;
+    HeroAnimationController animationController;
 
-    
+    private void Awake()
+    {
+        animationController = GetComponent<HeroAnimationController>();
+    }
+
+
     public void SerachTarget()
     {
+        //animationController.IdleAni();
         float closetDistance = Mathf.Infinity;
         Transform closetTarget = null;
 
@@ -52,6 +59,7 @@ public class HeroController : MonoBehaviour
         attackTimer += Time.deltaTime;
         if(attackTimer > attackSpeed)
         {
+            animationController.ShootAni();
             FireShot();
             attackTimer = 0;
 

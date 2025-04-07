@@ -36,30 +36,33 @@ public class WheelMovement : MonoBehaviour
     {
         return layer == 10 || layer == 11 || layer == 12;
     }
+    /// <summary>
+    /// 좀비 많을 시 이동 멈추기 ※필요시 사용
+    /// </summary>
+    /// <param name="collision"></param>
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (TargetLayer(collision.gameObject.layer))
+    //    {
+    //        collisionCount++;
+    //        if (collisionCount >= 3)
+    //        {
+    //            truckManager.StopTruck();
+    //        }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (TargetLayer(collision.gameObject.layer))
-        {
-            collisionCount++;
-            if(collisionCount >= 3)
-            {
-                truckManager.StopTruck();
-            }
-            
-        }
-    }
+    //    }
+    //}
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (TargetLayer(collision.gameObject.layer))
-        {
-            collisionCount--;
-            if (collisionCount < 3 && !isReset)
-            {
-                isReset = true;
-                StartCoroutine(ResetSpeedAfterDelay(1f));
-            }  
-        }
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (TargetLayer(collision.gameObject.layer))
+    //    {
+    //        collisionCount--;
+    //        if (collisionCount < 3 && !isReset)
+    //        {
+    //            isReset = true;
+    //            StartCoroutine(ResetSpeedAfterDelay(1f));
+    //        }
+    //    }
+    //}
 }
